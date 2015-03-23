@@ -1,5 +1,7 @@
 package com.example.nsokolov2;
 
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import com.google.android.youtube.player.YouTubeBaseActivity;
@@ -13,6 +15,7 @@ import com.google.android.youtube.player.YouTubePlayerFragment;
 public class YoutubePlayLessonActivity extends YouTubeBaseActivity implements
 YouTubePlayer.OnInitializedListener {
 
+	YouTubePlayer mPlayer = null;
 	String m_videoCode;
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -37,8 +40,21 @@ YouTubePlayer.OnInitializedListener {
 		// TODO Auto-generated method stub
 		 if (!wasRestored) {
 		      player.cueVideo(m_videoCode);
+		      setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 		    }
 		
+	}
+	
+	
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		// TODO Auto-generated method stub
+		super.onConfigurationChanged(newConfig);
+		if(newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE &&  mPlayer != null)
+		{
+			mPlayer.setFullscreen(true);
+			mPlayer.play();
+		}
 	}
 
 }
