@@ -1,4 +1,4 @@
-package com.example.nsokolov2;
+package nsokolov.guitar.youtube;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -52,7 +52,7 @@ public class NSokolov2 extends Activity implements OnInitializedListener {
 		
 		if(CheckThereIsNoInternet())
 		{
-			ShowAlertDialog("Нет соединения с интернетом");
+			ShowAlertDialog("�?ет �?оединени�? �? интернетом");
 		}
 		//else
 		//{
