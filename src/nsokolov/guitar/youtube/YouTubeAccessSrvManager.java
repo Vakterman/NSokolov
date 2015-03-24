@@ -1,4 +1,4 @@
-package com.example.nsokolov2;
+package nsokolov.guitar.youtube;
 
 import com.google.gdata.client.youtube.YouTubeService;
 

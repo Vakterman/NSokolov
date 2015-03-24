@@ -1,4 +1,4 @@
-package com.example.nsokolov2;
+package nsokolov.guitar.youtube;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubeThumbnailLoader;
 import com.google.android.youtube.player.YouTubeThumbnailView;
