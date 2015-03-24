@@ -1,4 +1,4 @@
-package nsokolov.guitar.youtube;
+package com.example.nsokolov2;
 
 import java.util.ArrayList;
 import java.util.List;

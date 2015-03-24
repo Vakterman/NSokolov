@@ -1,4 +1,4 @@
-package nsokolov.guitar.youtube;
+package com.example.nsokolov2;
 
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;

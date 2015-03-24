@@ -1,4 +1,4 @@
-package nsokolov.guitar.youtube;
+package com.example.nsokolov2;
 
 import java.io.IOException;
 import java.util.ArrayList;
