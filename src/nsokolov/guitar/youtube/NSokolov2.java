@@ -5,6 +5,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
+import nsokolov.guitar.entities.YoutubeQueriePlayList;
+import nsokolov.guitar.logic.YoutubePlayListExecutor;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
@@ -52,7 +55,7 @@ public class NSokolov2 extends Activity implements OnInitializedListener {
 		
 		if(CheckThereIsNoInternet())
 		{
-			ShowAlertDialog("�?ет �?оединени�? �? интернетом");
+			ShowAlertDialog("Нет соединения с интернетом!");
 		}
 		//else
 		//{
@@ -60,7 +63,8 @@ public class NSokolov2 extends Activity implements OnInitializedListener {
 			//youtubePlayer.initialize(AndroidDeveloperKeys.DeveloperKey,this);
 		//}
 		
-		
+		RequestPlayListTask playListTask = new RequestPlayListTask();
+		playListTask.execute();
 		
 		RequestVideosTask requestTask = new RequestVideosTask();
 		requestTask.execute();

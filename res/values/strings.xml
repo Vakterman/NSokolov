@@ -4,5 +4,6 @@
     <string name="app_name">Nsokolov2</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="choose_folder">Выберите раздел с видео</string>
 
 </resources>
