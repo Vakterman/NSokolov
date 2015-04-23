@@ -43,7 +43,7 @@ public class YoutubePlayListParser {
     {
     	String contentLink = "";
 		String playlistName = "";
-		
+		String defaultImage = "";
     	while(!(readyToReadingParser.getEventType() == XmlPullParser.END_TAG && readyToReadingParser.getName().equals("entry")))
     	{
     		
@@ -58,12 +58,15 @@ public class YoutubePlayListParser {
     		}
     		
     		
-    		
+    		if(readyToReadingParser.getEventType() == XmlPullParser.START_TAG && readyToReadingParser.getName().equals("media:thumbnail"))
+    		{
+    			defaultImage =  readyToReadingParser.getAttributeValue(null, "url");
+    		}
     		
     		readyToReadingParser.next();
     	}
     	
-    	YoutubePlaylist playListResult = new YoutubePlaylist(contentLink, playlistName);
+    	YoutubePlaylist playListResult = new YoutubePlaylist(contentLink, playlistName, defaultImage);
     	
     	return playListResult;
     }

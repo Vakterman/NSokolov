@@ -1,34 +1,12 @@
 package nsokolov.guitar.youtube;
-
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.List;
 
-import nsokolov.guitar.entities.YoutubeQueriePlayList;
-import nsokolov.guitar.logic.YoutubePlayListExecutor;
-
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpUriRequest;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayer.OnInitializedListener;
 import com.google.android.youtube.player.YouTubePlayer.Provider;
-import com.google.android.youtube.player.YouTubePlayerFragment;
-import com.google.gdata.client.youtube.YouTubeQuery;
 import com.google.gdata.data.youtube.VideoEntry;
-import com.google.gdata.data.youtube.VideoFeed;
-import com.google.gdata.util.ServiceException;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -42,7 +20,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 
 public class NSokolov2 extends Activity implements OnInitializedListener {

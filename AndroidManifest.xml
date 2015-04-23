@@ -27,6 +27,9 @@
             android:name="nsokolov.guitar.youtube.YoutubePlayLessonActivity"
             android:label="@string/app_name" >
         </activity>
+        <activity
+             android:name="nsokolov.guitar.youtube.PlayListsActivity">
+        </activity>>
     </application>
 
 </manifest>

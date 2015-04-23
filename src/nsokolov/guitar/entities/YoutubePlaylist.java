@@ -7,11 +7,13 @@ import com.google.gdata.data.youtube.VideoEntry;
 public class YoutubePlaylist {
 	private String _contentLink;
 	private String _playListName;
+	private String _defaultImageLink;
 	
-	public  YoutubePlaylist(String contentLink, String playListName)
+	public  YoutubePlaylist(String contentLink, String playListName, String defaultImageLink)
 	{
 		_contentLink = contentLink;
 		_playListName = playListName;
+		_defaultImageLink = defaultImageLink;
 	}
 	
 	public String	GetContentLink(){
