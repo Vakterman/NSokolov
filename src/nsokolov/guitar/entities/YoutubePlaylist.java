@@ -1,27 +1,43 @@
 package nsokolov.guitar.entities;
 
-import java.util.ArrayList;
-
-import com.google.gdata.data.youtube.VideoEntry;
+import android.graphics.Bitmap;
 
 public class YoutubePlaylist {
-	private String _contentLink;
+	private String _Id;
 	private String _playListName;
 	private String _defaultImageLink;
+	public Bitmap _image;
 	
-	public  YoutubePlaylist(String contentLink, String playListName, String defaultImageLink)
+	public  YoutubePlaylist(String playListId, String playListName, String defaultImageLink)
 	{
-		_contentLink = contentLink;
+		_Id = playListId;
 		_playListName = playListName;
 		_defaultImageLink = defaultImageLink;
 	}
 	
-	public String	GetContentLink(){
-		return _contentLink;
+	public  YoutubePlaylist(String contentLink, String playListName, Bitmap bitmap)
+	{
+		_Id = contentLink;
+		_playListName = playListName;
+		_image = bitmap;
+	}
+	
+	public String	GetId(){
+		return _Id;
 	}
 	
 	public String GetPlayListName()
 	{
 		return _playListName;
+	}
+	
+	public String GetDefaultImageLink()
+	{
+		return _defaultImageLink;
+	}
+	
+	public Bitmap GetImage()
+	{
+		return _image;
 	}
 }

@@ -2,11 +2,15 @@ package nsokolov.guitar.youtube;
 import java.util.List;
 
 
+
+import nsokolov.guitar.entities.YoutubePlaylist;
+
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayer.OnInitializedListener;
 import com.google.android.youtube.player.YouTubePlayer.Provider;
 import com.google.gdata.data.youtube.VideoEntry;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -39,49 +43,49 @@ public class NSokolov2 extends Activity implements OnInitializedListener {
 			//YouTubePlayerFragment youtubePlayer = (YouTubePlayerFragment)getFragmentManager().findFragmentById(R.id.youtube_fragment);
 			//youtubePlayer.initialize(AndroidDeveloperKeys.DeveloperKey,this);
 		//}
+		StartSpecifiedYoutubePlayList();
 		
-		RequestPlayListTask playListTask = new RequestPlayListTask();
-		playListTask.execute();
 		
-		RequestVideosTask requestTask = new RequestVideosTask();
-		requestTask.execute();
-		try {
-			synchronized(requestTask)
-			{
-				requestTask.wait();
-			}
-			
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
-		LayoutInflater layoutInflater = getLayoutInflater();
-		YoutubeThumbnailsListViewAdapter thumbnailLvAdapter;
-		List<VideoEntry> listVideoEntry;
-		synchronized(requestTask)
-		{
-			listVideoEntry = requestTask.GetCollectedVideos();
-		}
-		
-		thumbnailLvAdapter = new YoutubeThumbnailsListViewAdapter(this,listVideoEntry,R.layout.youtube_thumb_item);
-		
-		final ListView listView = (ListView)findViewById(R.id.youtube_list);
-		listView.setAdapter(thumbnailLvAdapter);
-		
-		listView.setOnItemClickListener(
-				   new OnItemClickListener(){
-
-					@Override
-					public void onItemClick(AdapterView<?> parent, View view,
-							int position, long id) {
-						// TODO Auto-generated method stub
-						VideoEntry videoEntry = (VideoEntry)listView.getItemAtPosition(position);
-						StartSelectedLesson(videoEntry.getId());
-					}
-					   
-				   }
-				);
+//		RequestVideosTask requestTask = new RequestVideosTask();
+//		requestTask.execute();
+//		try {
+//			synchronized(requestTask)
+//			{
+//				requestTask.wait();
+//			}
+//			
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//		LayoutInflater layoutInflater = getLayoutInflater();
+//		YoutubeThumbnailsListViewAdapter thumbnailLvAdapter;
+//		List<VideoEntry> listVideoEntry;
+//		synchronized(requestTask)
+//		{
+//			listVideoEntry = requestTask.GetCollectedVideos();
+//		}
+//		
+//		thumbnailLvAdapter = new YoutubeThumbnailsListViewAdapter(this,listVideoEntry,R.layout.youtube_thumb_item);
+//		
+//		final ListView listView = (ListView)findViewById(R.id.youtube_list);
+//		listView.setAdapter(thumbnailLvAdapter);
+//		
+//		listView.setOnItemClickListener(
+//				   new OnItemClickListener(){
+//
+//					@Override
+//					public void onItemClick(AdapterView<?> parent, View view,
+//							int position, long id) {
+//						// TODO Auto-generated method stub
+//						VideoEntry videoEntry = (VideoEntry)listView.getItemAtPosition(position);
+//						StartSelectedLesson(videoEntry.getId());
+//					}
+//					   
+//				   }
+//				);
 	}
 
 	@Override
@@ -143,6 +147,14 @@ public class NSokolov2 extends Activity implements OnInitializedListener {
 		Bundle b = new Bundle();
 		b.putString("videoCode",videoTag); //Your id
 		intent.putExtras(b); //Put your id to your next Intent
+		startActivity(intent);
+	}
+	
+	
+	private void StartSpecifiedYoutubePlayList()
+	{
+		Intent intent = new Intent(NSokolov2.this, PlayListsActivity.class);
+		Bundle b = new Bundle();
 		startActivity(intent);
 	}
 }

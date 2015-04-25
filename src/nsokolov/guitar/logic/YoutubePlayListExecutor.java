@@ -9,15 +9,13 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.xmlpull.v1.XmlPullParserException;
 
 import nsokolov.guitar.entities.IYoutubeQuery;
 import nsokolov.guitar.entities.YoutubePlaylist;
 
 public class YoutubePlayListExecutor implements
-		IYoutubeQuerieExecutor<YoutubePlaylist> {
+		IYoutubeQuerieExecutor{
 
 	private IYoutubeQuery<YoutubePlaylist> _playListQuery;
 
@@ -37,7 +35,7 @@ public class YoutubePlayListExecutor implements
 			String xmlString = EntityUtils.toString(httpResponse.getEntity());
 			YoutubePlayListParser youtubePlayListParser = new YoutubePlayListParser();
 			try {
-				youtubePlayListParser.parse(xmlString);
+				_playListQuery.SetResult(youtubePlayListParser.parse(xmlString));
 			} catch (XmlPullParserException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

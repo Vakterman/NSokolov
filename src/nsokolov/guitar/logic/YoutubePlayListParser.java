@@ -1,22 +1,26 @@
 package nsokolov.guitar.logic;
 
+import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.StringReader;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
 import nsokolov.guitar.entities.YoutubePlaylist;
-
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.util.Log;
 import android.util.Xml;
 
 public class YoutubePlayListParser {
-	 // We don't use namespaces
-    private static final String ns = null;
-    
-    public List<YoutubePlaylist> parse(String in) throws XmlPullParserException, IOException {
+	 public List<YoutubePlaylist> parse(String in) throws XmlPullParserException, IOException {
        
             XmlPullParser parser = Xml.newPullParser();
             parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
@@ -41,15 +45,17 @@ public class YoutubePlayListParser {
     
     public YoutubePlaylist extractYouTubePlayListEntry(XmlPullParser readyToReadingParser) throws XmlPullParserException, IOException
     {
-    	String contentLink = "";
+    	String playListId = "";
 		String playlistName = "";
-		String defaultImage = "";
+		String defaultImageLink = "";
+		Bitmap imageBm = null;
+		
     	while(!(readyToReadingParser.getEventType() == XmlPullParser.END_TAG && readyToReadingParser.getName().equals("entry")))
     	{
     		
-    		if(readyToReadingParser.getEventType() == XmlPullParser.START_TAG && readyToReadingParser.getName().equals("content"))
+    		if(readyToReadingParser.getEventType() == XmlPullParser.START_TAG && readyToReadingParser.getName().equals("yt:playlistId"))
     		{
-    			contentLink =  readyToReadingParser.getAttributeValue(null, "src");
+    			playListId =  extractText(readyToReadingParser);
     		}
     		
     		if(readyToReadingParser.getEventType() == XmlPullParser.START_TAG && readyToReadingParser.getName().equals("title"))
@@ -60,13 +66,16 @@ public class YoutubePlayListParser {
     		
     		if(readyToReadingParser.getEventType() == XmlPullParser.START_TAG && readyToReadingParser.getName().equals("media:thumbnail"))
     		{
-    			defaultImage =  readyToReadingParser.getAttributeValue(null, "url");
+    			defaultImageLink =  readyToReadingParser.getAttributeValue(null, "url");
+    			imageBm = GetImageByLink(defaultImageLink, 250,250);
     		}
+    		
+    		
     		
     		readyToReadingParser.next();
     	}
     	
-    	YoutubePlaylist playListResult = new YoutubePlaylist(contentLink, playlistName, defaultImage);
+    	YoutubePlaylist playListResult = new YoutubePlaylist(playListId, playlistName, imageBm);
     	
     	return playListResult;
     }
@@ -82,5 +91,48 @@ public class YoutubePlayListParser {
     	}
     	
     	return result;
+    }
+    
+    
+    
+    
+    private Bitmap GetImageByLink(String link,int width, int height)
+	{
+		Bitmap bm = null;
+		try {
+            URL aURL = new URL(link);
+            URLConnection conn = aURL.openConnection();
+            conn.connect();
+            InputStream is = conn.getInputStream();
+            BufferedInputStream bis = new BufferedInputStream(is);
+            bm = BitmapFactory.decodeStream(bis);
+            bis.close();
+            is.close();
+            
+            return resizeBitmapBySpecifiedWidth(bm,250);
+       } catch (IOException e) {
+           Log.e("LoadImage", "Error getting bitmap", e);
+       }
+		
+		
+		return bm;
+	}
+    
+    private Bitmap resizeBitmapBySpecifiedWidth(Bitmap oldBitmap, int width)
+    {
+    	int oldWidth = oldBitmap.getWidth();
+    	int oldHeight = oldBitmap.getHeight();
+    	
+    	if(width > oldWidth) width = oldWidth;
+
+    	
+    	float scaleWidth =  ((float)width)/oldWidth;
+    	float scaleHeight = scaleWidth;
+    	
+    	Matrix matrix = new Matrix();
+    	
+    	matrix.postScale(scaleWidth, scaleHeight);
+    	return Bitmap.createBitmap(oldBitmap, 0, 0, width, (int)(scaleHeight*oldHeight),matrix, false);
+    	
     }
 }
