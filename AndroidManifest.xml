@@ -29,7 +29,10 @@
         </activity>
         <activity
              android:name="nsokolov.guitar.youtube.PlayListsActivity">
-        </activity>>
+        </activity>
+         <activity
+             android:name="nsokolov.guitar.youtube.NSokolovTrackList">
+        </activity>
     </application>
 
 </manifest>

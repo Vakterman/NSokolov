@@ -38,54 +38,10 @@ public class NSokolov2 extends Activity implements OnInitializedListener {
 		{
 			ShowAlertDialog("Нет соединения с интернетом!");
 		}
-		//else
-		//{
-			//YouTubePlayerFragment youtubePlayer = (YouTubePlayerFragment)getFragmentManager().findFragmentById(R.id.youtube_fragment);
-			//youtubePlayer.initialize(AndroidDeveloperKeys.DeveloperKey,this);
-		//}
-		StartSpecifiedYoutubePlayList();
-		
-		
-		
-//		RequestVideosTask requestTask = new RequestVideosTask();
-//		requestTask.execute();
-//		try {
-//			synchronized(requestTask)
-//			{
-//				requestTask.wait();
-//			}
-//			
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		LayoutInflater layoutInflater = getLayoutInflater();
-//		YoutubeThumbnailsListViewAdapter thumbnailLvAdapter;
-//		List<VideoEntry> listVideoEntry;
-//		synchronized(requestTask)
-//		{
-//			listVideoEntry = requestTask.GetCollectedVideos();
-//		}
-//		
-//		thumbnailLvAdapter = new YoutubeThumbnailsListViewAdapter(this,listVideoEntry,R.layout.youtube_thumb_item);
-//		
-//		final ListView listView = (ListView)findViewById(R.id.youtube_list);
-//		listView.setAdapter(thumbnailLvAdapter);
-//		
-//		listView.setOnItemClickListener(
-//				   new OnItemClickListener(){
-//
-//					@Override
-//					public void onItemClick(AdapterView<?> parent, View view,
-//							int position, long id) {
-//						// TODO Auto-generated method stub
-//						VideoEntry videoEntry = (VideoEntry)listView.getItemAtPosition(position);
-//						StartSelectedLesson(videoEntry.getId());
-//					}
-//					   
-//				   }
-//				);
+		else
+		{
+			StartSpecifiedYoutubePlayList();
+		}
 	}
 
 	@Override

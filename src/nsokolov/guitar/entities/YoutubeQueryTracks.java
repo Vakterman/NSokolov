@@ -6,8 +6,15 @@ import com.google.common.collect.Lists;
 import com.google.gdata.data.youtube.VideoEntry;
 
 public class YoutubeQueryTracks implements IYoutubeQuery<VideoEntry> {
-  private String _urlGetVideos = 	"http://gdata.youtube.com/feeds/api/playlists/_ID_?v=2&alt=json";
+  private String _urlGetVideosFromPlayList = 	"http://gdata.youtube.com/feeds/api/playlists/_ID_?v=2&alt=json";
+  private String _urlGetVideosById;
   private List<VideoEntry> _videoEntries;
+  
+  
+  public YoutubeQueryTracks(String playListId) {
+	// TODO Auto-generated constructor stub
+	  _urlGetVideosById = _urlGetVideosFromPlayList.replace("_ID_",playListId);
+  }
 @Override
 public Iterable<VideoEntry> GetResult() {
 	// TODO Auto-generated method stub
@@ -17,7 +24,7 @@ public Iterable<VideoEntry> GetResult() {
 @Override
 public String GetQueryUrl() {
 	// TODO Auto-generated method stub
-	return _urlGetVideos;
+	return _urlGetVideosById;
 }
 
 @Override

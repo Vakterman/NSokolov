@@ -1,6 +1,8 @@
 package nsokolov.guitar.logic;
 
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -21,51 +23,35 @@ import nsokolov.guitar.entities.YoutubeQueryTracks;
 
 public class YoutubeQueryTrackListExecutor implements IYoutubeQuerieExecutor {
 
-	private String _urlQueryTrackList;
-	public YoutubeQueryTrackListExecutor(YoutubeQueryTracks queryTrack, String playListId)
+	private YoutubeQueryTracks _youtubeQuery;;
+	public YoutubeQueryTrackListExecutor(YoutubeQueryTracks queryTrack)
 	{
-		_urlQueryTrackList = queryTrack.GetQueryUrl().replace("_ID_",playListId);
+		_youtubeQuery = queryTrack;
 	}
 	
 	@Override
 	public void Execute() {
 		// TODO Auto-generated method stub
-		try
-		{
-			HttpClient httpClient = new DefaultHttpClient();
-			HttpUriRequest request = new HttpGet(_urlQueryTrackList);
-			
-			HttpResponse httpResponse = httpClient.execute(request);
-			
-			String jsonString = EntityUtils.toString(httpResponse.getEntity());
-			 JSONObject json = new JSONObject(jsonString);
-	         JSONArray jsonArray = json.getJSONObject("feed").getJSONArray("entry");
-	         
-	         for (int i = 0; i < jsonArray.length(); i++) {
-	        	 JSONObject jsonObject = jsonArray.getJSONObject(i);
-
-	             String video = jsonObject.getJSONObject("content").getString("src");
-	             String title = jsonObject.getJSONObject("title").getString("$t");
-	             
-	             VideoEntry videoEntry = new VideoEntry(title);
-	             videoEntry.setId(video);
-	             videoEntry.setTitle(TextConstruct.plainText(title));
-	     
-	        
-	         }
-		}
-		catch (ClientProtocolException e) {
-	         //Log.e("Feck", e);
-	     } catch (IOException e) {
-	         //Log.e("Feck", e);
-	     } catch (JSONException e) {
-	         //Log.e("Feck", e);
-	    }	
 		
-		synchronized(this)
-		{
-		 notifyAll();
+		HttpClient httpDefaultClient = new DefaultHttpClient();
+		HttpGet getRequest = new HttpGet(_youtubeQuery.GetQueryUrl());
+		
+		try {
+				HttpResponse response = 	httpDefaultClient.execute(getRequest);
+				String jSonResponse = EntityUtils.toString(response.getEntity());
+				_youtubeQuery.SetResult((new YoutubeJSONTracksParser()).parse(jSonResponse));
+			
+		} catch (ClientProtocolException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
 	}
+	
+	
+	
 
 }

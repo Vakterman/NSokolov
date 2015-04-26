@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import nsokolov.guitar.entities.IHandleTaskResult;
 import nsokolov.guitar.entities.YoutubeQueryTracks;
 import nsokolov.guitar.logic.YoutubeQueryTrackListExecutor;
 
@@ -27,18 +28,21 @@ import android.os.AsyncTask;
 public class RequestTrackListTask extends AsyncTask <Void, Void,Void > {
 
 	private String  _playListId = null;
+	private IHandleTaskResult<Iterable<VideoEntry>> _handlePlayListResult = null;
+	private YoutubeQueryTracks _query;
 	
-	public  RequestTrackListTask(String playListId) {
+	public  RequestTrackListTask(String playListId, IHandleTaskResult<Iterable<VideoEntry>> handler) {
 		// TODO Auto-generated constructor stub
 		_playListId = playListId;
+		_handlePlayListResult = handler;
 		
 	}
 	@Override
 	protected Void doInBackground(Void... params) {
 		// TODO Auto-generated method stub
 
-		YoutubeQueryTracks queryTracks = new YoutubeQueryTracks();
-		YoutubeQueryTrackListExecutor trackListExecutor = new YoutubeQueryTrackListExecutor(queryTracks, _playListId);
+		_query = new YoutubeQueryTracks(_playListId);
+		YoutubeQueryTrackListExecutor trackListExecutor = new YoutubeQueryTrackListExecutor(_query);
 		trackListExecutor.Execute();
 		
 		return null;
@@ -48,6 +52,7 @@ public class RequestTrackListTask extends AsyncTask <Void, Void,Void > {
 	protected void onPostExecute(Void result) {
 		// TODO Auto-generated method stub
 		super.onPostExecute(result);
+		_handlePlayListResult.HandleResult(_query.GetResult());
 	}
 
 }
