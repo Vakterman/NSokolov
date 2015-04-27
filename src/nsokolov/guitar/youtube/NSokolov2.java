@@ -1,16 +1,8 @@
 package nsokolov.guitar.youtube;
-import java.util.List;
-
-
-
-import nsokolov.guitar.entities.YoutubePlaylist;
-
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayer.OnInitializedListener;
 import com.google.android.youtube.player.YouTubePlayer.Provider;
-import com.google.gdata.data.youtube.VideoEntry;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -18,13 +10,8 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ListView;
 
 public class NSokolov2 extends Activity implements OnInitializedListener {
 
@@ -97,20 +84,9 @@ public class NSokolov2 extends Activity implements OnInitializedListener {
 		dialog.show();
 	}
 	
-	private void StartSelectedLesson(String videoTag)
-	{
-		Intent intent = new Intent(NSokolov2.this, YoutubePlayLessonActivity.class);
-		Bundle b = new Bundle();
-		b.putString("videoCode",videoTag); //Your id
-		intent.putExtras(b); //Put your id to your next Intent
-		startActivity(intent);
-	}
-	
-	
 	private void StartSpecifiedYoutubePlayList()
 	{
 		Intent intent = new Intent(NSokolov2.this, PlayListsActivity.class);
-		Bundle b = new Bundle();
 		startActivity(intent);
 	}
 }

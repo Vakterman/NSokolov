@@ -1,14 +1,10 @@
 package nsokolov.guitar.youtube;
 
-import java.util.List;
-
 import nsokolov.guitar.entities.YoutubePlaylist;
 import nsokolov.guitar.entities.YoutubeQueriePlayList;
 import android.app.Activity;
-import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;

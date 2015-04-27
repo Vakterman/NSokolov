@@ -1,28 +1,11 @@
 package nsokolov.guitar.youtube;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
+
+import com.google.gdata.data.youtube.VideoEntry;
 
 import nsokolov.guitar.entities.IHandleTaskResult;
 import nsokolov.guitar.entities.YoutubeQueryTracks;
 import nsokolov.guitar.logic.YoutubeQueryTrackListExecutor;
-
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpUriRequest;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import com.google.gdata.data.TextConstruct;
-import com.google.gdata.data.youtube.VideoEntry;
-
-import android.net.Uri;
 import android.os.AsyncTask;
 
 public class RequestTrackListTask extends AsyncTask <Void, Void,Void > {

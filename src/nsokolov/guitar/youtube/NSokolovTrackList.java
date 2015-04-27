@@ -9,7 +9,6 @@ import com.google.gdata.data.youtube.VideoEntry;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -48,7 +47,6 @@ public class NSokolovTrackList extends Activity {
 	
 	private void  InitVideoEntriesList(Iterable<VideoEntry> result)
 	{
-		LayoutInflater layoutInflater = getLayoutInflater();
 		YoutubeThumbnailsListViewAdapter thumbnailLvAdapter;
 		List<VideoEntry> listVideoEntry = (List<VideoEntry>)result;
 		

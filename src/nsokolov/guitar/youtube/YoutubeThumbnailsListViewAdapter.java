@@ -1,6 +1,5 @@
 package nsokolov.guitar.youtube;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.google.android.youtube.player.YouTubeThumbnailView;

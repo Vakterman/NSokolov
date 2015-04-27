@@ -4,17 +4,13 @@ import java.util.List;
 
 import nsokolov.guitar.entities.IYoutubeQuery;
 import nsokolov.guitar.entities.YoutubePlaylist;
-import nsokolov.guitar.entities.YoutubeQueriePlayList;
 import nsokolov.guitar.logic.YoutubePlayListExecutor;
-import android.app.ListActivity;
 import android.os.AsyncTask;
-import android.os.Handler;
 
 public class RequestPlayListTask extends AsyncTask<Void,Void,Void> {
 
 	public static final int STATUS_DOWNLOAD_END = 1253;
 	private  IYoutubeQuery<YoutubePlaylist> mQueryPlayList;
-	private  Handler mHandler;
 	private PlayListsActivity mListActivity;
 	
 	public  RequestPlayListTask( IYoutubeQuery<YoutubePlaylist>queryPlayList, PlayListsActivity listActivity) {
