@@ -7,10 +7,17 @@ import nsokolov.guitar.entities.IHandleTaskResult;
 import com.google.gdata.data.youtube.VideoEntry;
 
 import android.app.Activity;
+import android.app.ActionBar.LayoutParams;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
@@ -21,6 +28,9 @@ public class NSokolovTrackList extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.track_list);
+		
+		LinearLayout lessonPanel = (LinearLayout)findViewById(R.id.skype_lesson_panel);
+		lessonPanel.addView(LoadPanel());
 		
 		RequestTrackListTask trackListTask = new RequestTrackListTask(GetPlayListId(), new IHandleTaskResult<Iterable<VideoEntry>>() {
 			
@@ -80,4 +90,32 @@ public class NSokolovTrackList extends Activity {
 		intent.putExtras(b); //Put your id to your next Intent
 		startActivity(intent);
 	}
+	
+	private LinearLayout LoadPanel()
+	{
+		
+		LayoutInflater inflater = (LayoutInflater)this.getSystemService
+			      (this.LAYOUT_INFLATER_SERVICE);
+		LinearLayout layout = (LinearLayout) inflater.inflate(R.layout.custom_title, null);
+		
+		DisplayMetrics displaymetrics = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+		int width = displaymetrics.widthPixels;
+		LayoutParams layoutParams  = new LayoutParams(width, 50);
+		layout.setLayoutParams(layoutParams);
+		layout.setOnTouchListener(new OnTouchListener() {
+			
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				// TODO Auto-generated method stub
+				String url = "http://nnsokolov.ru/skype";
+				Intent i = new Intent(Intent.ACTION_VIEW);
+				i.setData(Uri.parse(url));
+				startActivity(i);
+				return false;
+			}
+		});
+		return layout;
+	}
+	
 }

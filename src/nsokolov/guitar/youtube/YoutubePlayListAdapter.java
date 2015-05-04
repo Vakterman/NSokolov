@@ -7,6 +7,7 @@ import android.app.ActionBar.LayoutParams;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,6 +78,8 @@ public class YoutubePlayListAdapter extends ArrayAdapter<YoutubePlaylist> {
 		textView.setText(text);
 		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+		params.gravity = Gravity.CENTER_VERTICAL;
+		params.leftMargin = 30;
 		textView.setLayoutParams(params);
 		textView.setTextSize(21);
 		return textView;

@@ -20,7 +20,7 @@
 		<item name="android:background">#323331</item>
 	</style>
 	 <style name="CustomTitle" parent="android:Theme">
-        <item name="android:windowTitleSize">50dip</item>
-        <item name="android:windowTitleBackgroundStyle">@style/CustomWindowTitleBackground</item>
-    </style>
+        	<item name="android:windowTitleSize">65dip</item>
+        	<item name="android:windowTitleBackgroundStyle">@style/CustomWindowTitle</item>
+    	</style>
 </resources>
