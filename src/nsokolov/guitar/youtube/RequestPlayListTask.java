@@ -11,9 +11,9 @@ public class RequestPlayListTask extends AsyncTask<Void,Void,Void> {
 
 	public static final int STATUS_DOWNLOAD_END = 1253;
 	private  IYoutubeQuery<YoutubePlaylist> mQueryPlayList;
-	private PlayListsActivity mListActivity;
+	private IContext mListActivity;
 	
-	public  RequestPlayListTask( IYoutubeQuery<YoutubePlaylist>queryPlayList, PlayListsActivity listActivity) {
+	public  RequestPlayListTask( IYoutubeQuery<YoutubePlaylist>queryPlayList, IContext listActivity) {
 		// TODO Auto-generated constructor stub
 		mQueryPlayList = queryPlayList;
 		mListActivity = listActivity;
@@ -32,7 +32,7 @@ public class RequestPlayListTask extends AsyncTask<Void,Void,Void> {
 		// TODO Auto-generated method stub
 		super.onPostExecute(result);
 		YoutubePlayListAdapter adapter = new YoutubePlayListAdapter(mListActivity,R.layout.youtube_thumb_item, (List<YoutubePlaylist>) mQueryPlayList.GetResult());
-		mListActivity.SetListViewAdapter(adapter);
+		mListActivity.SetAdapter(adapter);
 	}
 	
 	

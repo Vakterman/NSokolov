@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -20,11 +21,11 @@ public class YoutubePlayListAdapter extends ArrayAdapter<YoutubePlaylist> {
 
 	private Context m_context;
 	private List<YoutubePlaylist> _playListCollection;
-	public YoutubePlayListAdapter(Context context, int textViewResourceId,
+	public YoutubePlayListAdapter(IContext context, int textViewResourceId,
 			List<YoutubePlaylist> objects) {
-		super(context, textViewResourceId, objects);
+		super(context.getContext(), textViewResourceId, objects);
 		// TODO Auto-generated constructor stub
-		m_context = context;
+		m_context = context.getContext();
 		_playListCollection  = objects;
 	}
 
@@ -40,7 +41,7 @@ public class YoutubePlayListAdapter extends ArrayAdapter<YoutubePlaylist> {
 
 		linearLayout.addView(createImageViewByImgLink(youtubePlayList.GetImage()));
 		linearLayout.addView(createSpecifiedTextViewByText(youtubePlayList.GetPlayListName()));
-		
+		linearLayout.setLayoutParams(new GridView.LayoutParams(190, 320));
 		return linearLayout;
 	}
 	

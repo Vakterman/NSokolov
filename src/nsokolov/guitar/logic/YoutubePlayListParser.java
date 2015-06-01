@@ -64,10 +64,16 @@ public class YoutubePlayListParser {
     		}
     		
     		
-    		if(readyToReadingParser.getEventType() == XmlPullParser.START_TAG && readyToReadingParser.getName().equals("media:thumbnail"))
+    		if(readyToReadingParser.getEventType() == XmlPullParser.START_TAG && readyToReadingParser.getName().equals("media:thumbnail") && imageBm == null)
     		{
     			defaultImageLink =  readyToReadingParser.getAttributeValue(null, "url");
-    			imageBm = GetImageByLink(defaultImageLink, 250,250);
+    			String ytName = readyToReadingParser.getAttributeValue(null,"yt:name");
+	    			
+    			
+    			if(ytName.endsWith("mqdefault"))
+    			{
+    				imageBm = GetImageByLink(defaultImageLink);
+    			}
     		}
     		
     		
@@ -96,9 +102,30 @@ public class YoutubePlayListParser {
     
     
     
-    private Bitmap GetImageByLink(String link,int width, int height)
-	{
-		Bitmap bm = null;
+//    private Bitmap GetImageByLink(String link,int width, int height)
+//	{
+//		Bitmap bm = null;
+//		try {
+//            URL aURL = new URL(link);
+//            URLConnection conn = aURL.openConnection();
+//            conn.connect();
+//            InputStream is = conn.getInputStream();
+//            BufferedInputStream bis = new BufferedInputStream(is);
+//            bm = BitmapFactory.decodeStream(bis);
+//            bis.close();
+//            is.close();
+//            
+//            return bm;
+//       } catch (IOException e) {
+//           Log.e("LoadImage", "Error getting bitmap", e);
+//       }
+//		
+//		
+//		return bm;
+//	}
+    
+    private Bitmap GetImageByLink(String link){
+    	Bitmap bm = null;
 		try {
             URL aURL = new URL(link);
             URLConnection conn = aURL.openConnection();
@@ -109,15 +136,12 @@ public class YoutubePlayListParser {
             bis.close();
             is.close();
             
-            return resizeBitmapBySpecifiedWidth(bm,250);
+            return bm;
        } catch (IOException e) {
            Log.e("LoadImage", "Error getting bitmap", e);
        }
-		
-		
-		return bm;
+		return null;
 	}
-    
     private Bitmap resizeBitmapBySpecifiedWidth(Bitmap oldBitmap, int width)
     {
     	int oldWidth = oldBitmap.getWidth();

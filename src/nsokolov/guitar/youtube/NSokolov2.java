@@ -86,7 +86,7 @@ public class NSokolov2 extends Activity implements OnInitializedListener {
 	
 	private void StartSpecifiedYoutubePlayList()
 	{
-		Intent intent = new Intent(NSokolov2.this, PlayListsActivity.class);
+		Intent intent = new Intent(NSokolov2.this, PlayListsExplorerActivity.class);
 		startActivity(intent);
 	}
 }

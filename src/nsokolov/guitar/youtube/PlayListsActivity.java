@@ -4,6 +4,7 @@ import nsokolov.guitar.entities.YoutubePlaylist;
 import nsokolov.guitar.entities.YoutubeQueriePlayList;
 import android.app.Activity;
 import android.app.ActionBar.LayoutParams;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,11 +16,12 @@ import android.view.View.OnTouchListener;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class PlayListsActivity extends Activity {
+public class PlayListsActivity extends Activity implements IContext {
 			
 		private ListView mListView = null;
 		protected void onCreate(Bundle savedInstanceState) {
@@ -99,5 +101,19 @@ public class PlayListsActivity extends Activity {
 			b.putString("playListId", playListId);
 			intent.putExtras(b);
 			startActivity(intent);
+		}
+
+
+		@Override
+		public Context getContext() {
+			// TODO Auto-generated method stub
+			return this;
+		}
+
+
+		@Override
+		public void SetAdapter(BaseAdapter adapter) {
+			// TODO Auto-generated method stub
+			mListView.setAdapter(adapter);
 		}
 }

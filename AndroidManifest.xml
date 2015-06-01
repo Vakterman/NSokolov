@@ -39,6 +39,10 @@
              android:name="nsokolov.guitar.youtube.NSokolovTrackList"
              android:theme="@android:style/Theme">
         </activity>
+        <activity
+             android:name="nsokolov.guitar.youtube.PlayListsExplorerActivity"
+             android:theme="@android:style/Theme">
+        </activity>
     </application>
 
 </manifest>
