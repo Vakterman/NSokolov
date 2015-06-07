@@ -2,21 +2,23 @@ package nsokolov.guitar.entities;
 
 import java.util.List;
 
-import com.google.common.collect.Lists;
-import com.google.gdata.data.youtube.VideoEntry;
+import nsokolov.guitar.interfaces.IYoutubeQuery;
 
-public class YoutubeQueryTracks implements IYoutubeQuery<VideoEntry> {
-  private String _urlGetVideosFromPlayList = 	"http://gdata.youtube.com/feeds/api/playlists/_ID_?v=2&alt=json";
+import com.google.common.collect.Lists;
+
+public class YoutubeQueryTracks implements IYoutubeQuery<YoutubeEntityTrack> {
+  private String _urlGetVideosListFromPlayList ="https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=_ID_&key=" + AndroidDeveloperKeys.DeveloperKey;
+  
   private String _urlGetVideosById;
-  private List<VideoEntry> _videoEntries;
+  private List<YoutubeEntityTrack> _videoEntries;
   
   
   public YoutubeQueryTracks(String playListId) {
 	// TODO Auto-generated constructor stub
-	  _urlGetVideosById = _urlGetVideosFromPlayList.replace("_ID_",playListId);
+	  _urlGetVideosById = _urlGetVideosListFromPlayList.replace("_ID_",playListId);
   }
 @Override
-public Iterable<VideoEntry> GetResult() {
+public Iterable<YoutubeEntityTrack> GetResult() {
 	// TODO Auto-generated method stub
 	return _videoEntries;
 }
@@ -28,7 +30,7 @@ public String GetQueryUrl() {
 }
 
 @Override
-public void SetResult(Iterable<VideoEntry> result) {
+public void SetResult(Iterable<YoutubeEntityTrack> result) {
 	// TODO Auto-generated method stub
 	_videoEntries = Lists.newLinkedList(result);
 }

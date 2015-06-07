@@ -1,4 +1,4 @@
-package nsokolov.guitar.entities;
+package nsokolov.guitar.interfaces;
 
 public interface IYoutubeQuery<T> {
 	Iterable<T> GetResult();

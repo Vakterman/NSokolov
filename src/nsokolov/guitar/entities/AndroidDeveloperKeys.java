@@ -1,4 +1,4 @@
-package nsokolov.guitar.youtube;
+package nsokolov.guitar.entities;
 
 public final class AndroidDeveloperKeys {
 	public static  final String  DeveloperKey = "AIzaSyDx7s0RkSZRDEh0UzKB0m7hwdRT-4zXOuU";

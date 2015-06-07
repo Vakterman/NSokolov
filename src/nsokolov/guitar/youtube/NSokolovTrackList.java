@@ -2,12 +2,14 @@ package nsokolov.guitar.youtube;
 
 import java.util.List;
 
-import nsokolov.guitar.entities.IHandleTaskResult;
-
-import com.google.gdata.data.youtube.VideoEntry;
-
+import nsokolov.guitar.entities.YoutubeEntity;
+import nsokolov.guitar.entities.YoutubeEntityTrack;
+import nsokolov.guitar.interfaces.IContext;
+import nsokolov.guitar.interfaces.IHandleTaskResult;
+import nsokolov.guitar.logic.VideoEntityItemAdapter;
 import android.app.Activity;
 import android.app.ActionBar.LayoutParams;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,11 +19,12 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
-public class NSokolovTrackList extends Activity {
+public class NSokolovTrackList extends Activity implements IContext<YoutubeEntityTrack> {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,10 +35,10 @@ public class NSokolovTrackList extends Activity {
 		LinearLayout lessonPanel = (LinearLayout)findViewById(R.id.skype_lesson_panel);
 		lessonPanel.addView(LoadPanel());
 		
-		RequestTrackListTask trackListTask = new RequestTrackListTask(GetPlayListId(), new IHandleTaskResult<Iterable<VideoEntry>>() {
+		RequestTrackListTask trackListTask = new RequestTrackListTask(GetPlayListId(), new IHandleTaskResult<Iterable<YoutubeEntityTrack>>() {
 			
 			@Override
-			public void HandleResult(Iterable<VideoEntry> result) {
+			public void HandleResult(Iterable<YoutubeEntityTrack> result) {
 				// TODO Auto-generated method stub
 				InitVideoEntriesList(result);
 			}
@@ -55,15 +58,15 @@ public class NSokolovTrackList extends Activity {
 		return playListId;
 	}
 	
-	private void  InitVideoEntriesList(Iterable<VideoEntry> result)
+	private void  InitVideoEntriesList(Iterable<YoutubeEntityTrack> result)
 	{
-		YoutubeThumbnailsListViewAdapter thumbnailLvAdapter;
-		List<VideoEntry> listVideoEntry = (List<VideoEntry>)result;
 		
-		thumbnailLvAdapter = new YoutubeThumbnailsListViewAdapter(this,listVideoEntry,R.layout.youtube_thumb_item);
+		List<YoutubeEntityTrack> listVideoEntry = (List<YoutubeEntityTrack>)result;
+		
+		VideoEntityItemAdapter videoEntityItemAdapter = new YoutubeTrackListAdapter(this,R.layout.youtube_track_item,listVideoEntry);
 		
 		final ListView listView = (ListView)findViewById(R.id.track_list);
-		listView.setAdapter(thumbnailLvAdapter);
+		listView.setAdapter(videoEntityItemAdapter);
 		
 		listView.setOnItemClickListener(
 				   new OnItemClickListener(){
@@ -72,8 +75,8 @@ public class NSokolovTrackList extends Activity {
 					public void onItemClick(AdapterView<?> parent, View view,
 							int position, long id) {
 						// TODO Auto-generated method stub
-						VideoEntry videoEntry = (VideoEntry)listView.getItemAtPosition(position);
-						StartSelectedLesson(videoEntry.getId());
+						YoutubeEntityTrack videoEntry = (YoutubeEntityTrack)listView.getItemAtPosition(position);
+						StartSelectedLesson(videoEntry.GetVideoCode());
 					}
 					   
 				   }
@@ -94,8 +97,7 @@ public class NSokolovTrackList extends Activity {
 	private LinearLayout LoadPanel()
 	{
 		
-		LayoutInflater inflater = (LayoutInflater)this.getSystemService
-			      (this.LAYOUT_INFLATER_SERVICE);
+		LayoutInflater inflater = (LayoutInflater)this.getSystemService(this.LAYOUT_INFLATER_SERVICE);
 		LinearLayout layout = (LinearLayout) inflater.inflate(R.layout.custom_title, null);
 		
 		DisplayMetrics displaymetrics = new DisplayMetrics();
@@ -116,6 +118,36 @@ public class NSokolovTrackList extends Activity {
 			}
 		});
 		return layout;
+	}
+
+
+	@Override
+	public void OnPlayListClik(YoutubeEntityTrack track) {
+		// TODO Auto-generated method stub
+		StartTrackListTask(track.GetVideoCode());
+	}
+
+
+	@Override
+	public Context getContext() {
+		// TODO Auto-generated method stub
+		return this;
+	}
+
+
+	@Override
+	public void SetAdapter(BaseAdapter adapter) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public void StartTrackListTask(String trackId)
+	{
+		Intent intent = new Intent(NSokolovTrackList.this, YoutubePlayLessonActivity.class);
+		Bundle b = new Bundle();
+		b.putString("videoCode", trackId);
+		intent.putExtras(b);
+		startActivity(intent);
 	}
 	
 }

@@ -1,7 +1,8 @@
 package nsokolov.guitar.youtube;
 
-import nsokolov.guitar.entities.YoutubePlaylist;
+import nsokolov.guitar.entities.YoutubeEntity;
 import nsokolov.guitar.entities.YoutubeQueriePlayList;
+import nsokolov.guitar.interfaces.IContext;
 import android.app.Activity;
 import android.app.ActionBar.LayoutParams;
 import android.content.Context;
@@ -13,13 +14,11 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 
 public class PlayListsActivity extends Activity implements IContext {
 			
@@ -53,7 +52,7 @@ public class PlayListsActivity extends Activity implements IContext {
 				public void onItemClick(AdapterView<?> parent, View view,
 						int position, long id) {
 					// TODO Auto-generated method stub
-				  YoutubePlaylist playlist = (YoutubePlaylist)mListView.getItemAtPosition(position);
+					YoutubeEntity playlist = (YoutubeEntity)mListView.getItemAtPosition(position);
 				
 				  StartTrackListTask(playlist.GetId());		 
 				  }
@@ -115,5 +114,11 @@ public class PlayListsActivity extends Activity implements IContext {
 		public void SetAdapter(BaseAdapter adapter) {
 			// TODO Auto-generated method stub
 			mListView.setAdapter(adapter);
+		}
+
+		@Override
+		public void OnPlayListClik(YoutubeEntity playList) {
+			// TODO Auto-generated method stub
+			
 		}
 }
