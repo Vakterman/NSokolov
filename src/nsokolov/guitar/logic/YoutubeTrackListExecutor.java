@@ -1,7 +1,6 @@
 package nsokolov.guitar.logic;
 
 import nsokolov.guitar.entities.YoutubeEntityTrack;
-import nsokolov.guitar.entities.YoutubeQueryTracks;
 import nsokolov.guitar.interfaces.IYoutubeQuery;
 
 public class YoutubeTrackListExecutor extends YoutubeBaseExecutor<YoutubeEntityTrack> {

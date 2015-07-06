@@ -5,6 +5,6 @@ import android.content.Context;
 import android.widget.BaseAdapter;
 
 public interface IContext<T extends YoutubeEntity> extends IOnPlayListClick<T> {
-		Context getContext();
+		Context GetContext();
 		void SetAdapter(BaseAdapter adapter);
 }

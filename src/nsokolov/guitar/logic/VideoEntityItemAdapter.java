@@ -5,6 +5,7 @@ import java.util.List;
 import nsokolov.guitar.entities.YoutubeEntity;
 import nsokolov.guitar.interfaces.IContext;
 import nsokolov.guitar.youtube.R;
+import android.annotation.SuppressLint;
 import android.app.ActionBar.LayoutParams;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -19,23 +20,24 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+@SuppressLint("ViewHolder")
 public abstract class VideoEntityItemAdapter<T extends YoutubeEntity> extends ArrayAdapter<YoutubeEntity> {
 
 	protected int _resourceId;
 	protected List<T> _playListCollection;
-	protected IContext m_Context;
-	public VideoEntityItemAdapter(IContext context, int textViewResourceId, List<T> objects) {
-		super(context.getContext(), textViewResourceId);
+	protected IContext<T> _Context;
+	public VideoEntityItemAdapter(IContext<T> context, int textViewResourceId, List<T> objects) {
+		super(context.GetContext(), textViewResourceId);
 		// TODO Auto-generated constructor stub
 		_resourceId = textViewResourceId;
-		m_Context = context;
+		_Context = context;
 		_playListCollection = objects;
 	}
 
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		LayoutInflater layoutInflater = (LayoutInflater)m_Context.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		LayoutInflater layoutInflater = (LayoutInflater)_Context.GetContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		
 		LinearLayout linearLayout = (LinearLayout)layoutInflater.inflate(_resourceId,parent,false);
 		
@@ -48,10 +50,11 @@ public abstract class VideoEntityItemAdapter<T extends YoutubeEntity> extends Ar
 		
 		linearLayout.setOnClickListener(new OnClickListener() {
 			
+			@SuppressWarnings("unchecked")
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				m_Context.OnPlayListClik((T)v.getTag());
+				_Context.OnPlayListClik((T)v.getTag());
 			}
 		});
 		return linearLayout;
@@ -78,7 +81,7 @@ public abstract class VideoEntityItemAdapter<T extends YoutubeEntity> extends Ar
 	 
 	 protected ImageView createImageViewByImgLink(Bitmap image)
 	{
-		ImageView imgView = new ImageView(m_Context.getContext());
+		ImageView imgView = new ImageView(_Context.GetContext());
 		imgView.setImageBitmap(image == null? GetDefaultBitmap(): image);
 		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
@@ -88,7 +91,7 @@ public abstract class VideoEntityItemAdapter<T extends YoutubeEntity> extends Ar
 	
 	protected TextView createSpecifiedTextViewByText(String text)
 	{
-		TextView textView = new TextView(m_Context.getContext());
+		TextView textView = new TextView(_Context.GetContext());
 		textView.setText(text);
 		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
@@ -102,7 +105,7 @@ public abstract class VideoEntityItemAdapter<T extends YoutubeEntity> extends Ar
 	protected Bitmap GetDefaultBitmap()
 	{
 		Bitmap bm = null;
-		bm = BitmapFactory.decodeResource(m_Context.getContext().getResources(), R.drawable.acoustic_guitar);
+		bm = BitmapFactory.decodeResource(_Context.GetContext().getResources(), R.drawable.guitar);
 		return bm;
 	}
 }

@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">NSGuitar</string>
+    <string name="app_name">Уроки гитары Николая соколова</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="choose_folder">Выберите раздел с видео</string>
+    <string name="network_error_warning">Ошибка взаимодействия с сетью.</string>
+    <string name="image_description">Картинка -  своеобразный фавикон приложения</string>
+    <string name="image_warning_description">Картинка, являющаяся своеобразной иконкой</string>
+    <string name="guitar_lessons">Уроки гитары в скайпе</string>
+    <string name="network_dialog_title">Попытка подключиться к сети</string>
+    <string name="network_error_dialog_text">Подключите интернет и попробуйте снова</string>
+    <string name="network_dialog_negative_button">Cancel</string>
 
 </resources>

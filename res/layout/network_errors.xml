@@ -4,23 +4,23 @@
     android:layout_height="65dip"
     android:background="#323331">
  
-        <ImageView
-            android:contentDescription="@string/image_description"
+    <ImageView
+        	android:contentDescription="@string/image_warning_description"
             android:id="@+id/icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_launcher"/>
+            android:src="@drawable/warning"/>
     
     <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="18sp"
-            android:paddingEnd="5dip" 
+            android:paddingEnd="20dip" 
             android:layout_gravity="center"
             android:gravity="center"
             android:paddingStart="5dip"
-            android:text="@string/guitar_lessons"/>
+            android:text="@string/network_error_warning"/>
  
  
  

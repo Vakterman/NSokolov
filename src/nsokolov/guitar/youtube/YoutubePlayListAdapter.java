@@ -8,11 +8,9 @@ import nsokolov.guitar.logic.VideoEntityItemAdapter;
 import android.view.ViewGroup;
 import android.widget.GridView;
 
-public class YoutubePlayListAdapter extends VideoEntityItemAdapter {
+public class YoutubePlayListAdapter extends VideoEntityItemAdapter<YoutubeEntity> {
 
-
-	 
-	 public YoutubePlayListAdapter(IContext context, int textViewResourceId, List<YoutubeEntity> youtubeEntitylist) {
+	public YoutubePlayListAdapter(IContext<YoutubeEntity> context, int textViewResourceId, List<YoutubeEntity> youtubeEntitylist) {
 		super(context, textViewResourceId,youtubeEntitylist);
 		// TODO Auto-generated constructor stub
 	}
@@ -23,4 +21,5 @@ public class YoutubePlayListAdapter extends VideoEntityItemAdapter {
 			view.addView(createImageViewByImgLink(youtubeEntity.GetImage()));
 			view.addView(createSpecifiedTextViewByText(youtubeEntity.GetPlayListName()));
 			view.setLayoutParams(new GridView.LayoutParams(190, 200));
-		}}
+		}
+}

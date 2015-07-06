@@ -1,9 +1,6 @@
 package nsokolov.guitar.youtube;
 
 
-import com.google.gdata.data.youtube.VideoEntry;
-
-import nsokolov.guitar.entities.YoutubeEntity;
 import nsokolov.guitar.entities.YoutubeEntityTrack;
 import nsokolov.guitar.entities.YoutubeQueryTracks;
 import nsokolov.guitar.interfaces.IHandleTaskResult;
@@ -13,13 +10,13 @@ import android.os.AsyncTask;
 public class RequestTrackListTask extends AsyncTask <Void, Void,Void > {
 
 	private String  _playListId = null;
-	private IHandleTaskResult<Iterable<YoutubeEntityTrack>> _handlePlayListResult = null;
+	private IHandleTaskResult<YoutubeEntityTrack> _handlePlayListResult = null;
 	private YoutubeQueryTracks _query;
 	
-	public  RequestTrackListTask(String playListId, IHandleTaskResult<Iterable<YoutubeEntityTrack>> handler) {
+	public  RequestTrackListTask(String playListId, IHandleTaskResult<YoutubeEntityTrack> iHandleTaskResult) {
 		// TODO Auto-generated constructor stub
 		_playListId = playListId;
-		_handlePlayListResult = handler;
+		_handlePlayListResult = iHandleTaskResult;
 		
 	}
 
