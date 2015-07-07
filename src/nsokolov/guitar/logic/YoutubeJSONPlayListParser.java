@@ -7,6 +7,11 @@ import nsokolov.guitar.entities.YoutubeEntity;
 
 public class YoutubeJSONPlayListParser extends YoutubeJSONEntityParser<YoutubeEntity> {
 
+	public YoutubeJSONPlayListParser(int deviceSizeCategory) {
+		super(deviceSizeCategory);
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	protected void ParseAdditionalSection(JSONObject jsonObject) {
 		// TODO Auto-generated method stub

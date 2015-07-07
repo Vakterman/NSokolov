@@ -5,11 +5,10 @@
      android:layout_height="fill_parent"
      android:orientation="vertical"
      tools:context="nsokolov.guitar.youtube.PlayListsActivity" >
- <LinearLayout android:id="@+id/skype_lesson_panel"
+ <RelativeLayout android:id="@+id/skype_lesson_panel"
      android:layout_width="fill_parent"
-	 android:layout_height="70dip"
-     android:orientation="horizontal">
- </LinearLayout>
+	 android:layout_height="70dip">
+ </RelativeLayout>
     
 <GridView 
     android:id="@+id/playlists_explorer"
@@ -17,9 +16,9 @@
     android:layout_height="wrap_content"
     android:gravity="center"
     android:numColumns="auto_fit"
-    android:columnWidth="190dp"
+    android:columnWidth="320dp"
     android:horizontalSpacing="10dp"
-    android:verticalSpacing="10dp">
+    android:verticalSpacing="20dp">
     
 </GridView>     
  </LinearLayout>

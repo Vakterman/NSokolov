@@ -22,7 +22,7 @@
             android:theme="@style/CustomTitle">
         </activity>
          <activity
-             android:name="nsokolov.guitar.youtube.NSokolovTrackList"
+             android:name="nsokolov.guitar.youtube.YoutubeTrackListActivity"
              android:theme="@android:style/Theme">
         </activity>
         <activity

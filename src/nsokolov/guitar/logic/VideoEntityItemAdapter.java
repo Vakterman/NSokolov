@@ -18,6 +18,7 @@ import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 @SuppressLint("ViewHolder")
@@ -39,7 +40,7 @@ public abstract class VideoEntityItemAdapter<T extends YoutubeEntity> extends Ar
 	public View getView(int position, View convertView, ViewGroup parent) {
 		LayoutInflater layoutInflater = (LayoutInflater)_Context.GetContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		
-		LinearLayout linearLayout = (LinearLayout)layoutInflater.inflate(_resourceId,parent,false);
+		RelativeLayout linearLayout = (RelativeLayout)layoutInflater.inflate(_resourceId,parent,false);
 		
 		
 		T youtubeEntity =	_playListCollection.get(position);
@@ -96,7 +97,6 @@ public abstract class VideoEntityItemAdapter<T extends YoutubeEntity> extends Ar
 		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 		params.gravity = Gravity.CENTER_VERTICAL;
-		params.leftMargin = 10;
 		textView.setLayoutParams(params);
 		textView.setTextSize(18);
 		return textView;

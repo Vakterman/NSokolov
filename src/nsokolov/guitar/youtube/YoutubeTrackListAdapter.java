@@ -7,6 +7,7 @@ import nsokolov.guitar.entities.YoutubeEntityTrack;
 import nsokolov.guitar.interfaces.IContext;
 import nsokolov.guitar.logic.VideoEntityItemAdapter;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 public class YoutubeTrackListAdapter extends VideoEntityItemAdapter<YoutubeEntityTrack> {
 

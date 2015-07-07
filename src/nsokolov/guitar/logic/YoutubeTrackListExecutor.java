@@ -4,7 +4,7 @@ import nsokolov.guitar.entities.YoutubeEntityTrack;
 import nsokolov.guitar.interfaces.IYoutubeQuery;
 
 public class YoutubeTrackListExecutor extends YoutubeBaseExecutor<YoutubeEntityTrack> {
-
+	
 	public YoutubeTrackListExecutor(IYoutubeQuery<YoutubeEntityTrack> query) {
 		// TODO Auto-generated constructor stub
 		super(query);
@@ -13,7 +13,7 @@ public class YoutubeTrackListExecutor extends YoutubeBaseExecutor<YoutubeEntityT
 	@Override
 	protected YoutubeJSONEntityParser<YoutubeEntityTrack> CreateEntityParser() {
 		// TODO Auto-generated method stub
-		return new YoutubeJSONTrackParser();
+		return new YoutubeJSONTrackParser(_playListQuery.GetSizeConfiguration());
 	}
 
 }

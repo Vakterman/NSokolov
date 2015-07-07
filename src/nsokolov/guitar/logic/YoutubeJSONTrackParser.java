@@ -9,6 +9,11 @@ import nsokolov.guitar.entities.YoutubeEntityTrack;
 
 public class YoutubeJSONTrackParser extends YoutubeJSONEntityParser<YoutubeEntityTrack>{
 
+	public YoutubeJSONTrackParser(int deviceSizeCategory) {
+		super(deviceSizeCategory);
+		// TODO Auto-generated constructor stub
+	}
+
 	private String _videoCode;
 	@Override
 	protected void ParseAdditionalSection(JSONObject jsonObject) throws JSONSectionNotFound, JSONException {

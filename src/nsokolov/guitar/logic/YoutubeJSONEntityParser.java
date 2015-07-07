@@ -12,6 +12,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
@@ -21,6 +22,11 @@ import nsokolov.guitar.interfaces.IParser;
 
 public abstract class YoutubeJSONEntityParser<T extends YoutubeEntity> implements IParser<T> {
 
+	private int _deviceSizeCategory = 0;
+	public YoutubeJSONEntityParser(int deviceSizeCategory)
+	{
+		_deviceSizeCategory = deviceSizeCategory;
+	}
 	@Override
 	public List<T> Parse(String jsonResponse) {
 		// TODO Auto-generated method stub
@@ -104,9 +110,19 @@ public abstract class YoutubeJSONEntityParser<T extends YoutubeEntity> implement
 		}
 		
 		JSONObject thumbnails = jsonSnippetObject.getJSONObject("thumbnails");
-		if(thumbnails.has("default")){
-			JSONObject jsonDefaultObject = thumbnails.getJSONObject("default");
-			return jsonDefaultObject.getString("url");
+		
+		if(_deviceSizeCategory == Configuration.SCREENLAYOUT_SIZE_NORMAL || _deviceSizeCategory == Configuration.SCREENLAYOUT_SIZE_LARGE)
+		{
+			if(thumbnails.has("medium")){
+				JSONObject jsonDefaultObject = thumbnails.getJSONObject("standard");
+				return jsonDefaultObject.getString("url");
+			}
+		}
+		else{
+			if(thumbnails.has("default")){
+				JSONObject jsonDefaultObject = thumbnails.getJSONObject("default");
+				return jsonDefaultObject.getString("url");
+			}
 		}
 		return "";
 	}

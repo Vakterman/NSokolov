@@ -13,7 +13,7 @@ public class YoutubePlayListExecutor extends YoutubeBaseExecutor<YoutubeEntity>{
 	@Override
 	protected YoutubeJSONEntityParser<YoutubeEntity> CreateEntityParser() {
 		// TODO Auto-generated method stub
-		return new YoutubeJSONPlayListParser();
+		return new YoutubeJSONPlayListParser(_playListQuery.GetSizeConfiguration());
 	}
 
 	
