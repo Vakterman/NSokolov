@@ -3,6 +3,7 @@ package nsokolov.guitar.youtube;
 import nsokolov.guitar.interfaces.IOnNetworkStateChangeHandler;
 import nsokolov.guitar.logic.InternetConnectionChecker;
 import nsokolov.guitar.logic.NetworkStateChangedReceiver;
+import nsokolov.guitar.logic.Utilities;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -43,6 +44,9 @@ public class BaseNetworkActivity extends Activity implements IOnNetworkStateChan
 
 		_lessonPanel = (RelativeLayout)findViewById(R.id.skype_lesson_panel);
 		_playListExplorer = (GridView)findViewById(R.id.playlists_explorer);
+		
+		int reslution_type = new Utilities(this).GetSizeCategory();
+		_playListExplorer.setColumnWidth(ResolutionManager.GetColumnWidthForGridPlaylists(reslution_type));
 		
 		NetworkStateChangedReceiver networkStateChangedReceiver = new NetworkStateChangedReceiver(this);
 		registerReceiver(networkStateChangedReceiver,new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));

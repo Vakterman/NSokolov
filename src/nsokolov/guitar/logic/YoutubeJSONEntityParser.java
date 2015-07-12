@@ -114,7 +114,7 @@ public abstract class YoutubeJSONEntityParser<T extends YoutubeEntity> implement
 		if(_deviceSizeCategory == Configuration.SCREENLAYOUT_SIZE_NORMAL || _deviceSizeCategory == Configuration.SCREENLAYOUT_SIZE_LARGE)
 		{
 			if(thumbnails.has("medium")){
-				JSONObject jsonDefaultObject = thumbnails.getJSONObject("standard");
+				JSONObject jsonDefaultObject = thumbnails.getJSONObject("medium");
 				return jsonDefaultObject.getString("url");
 			}
 		}

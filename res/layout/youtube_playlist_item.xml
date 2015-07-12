@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity = "top"
+    android:layout_marginStart="10dp">
+    
+    <ImageView android:id="@+id/PlayListImage"
+        android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+        android:maxHeight="200dp">
+    </ImageView>
+    
+    <TextView android:id="@+id/PlayListTitle"
+         android:layout_width="wrap_content"
+    	 android:layout_height="wrap_content"
+    	 android:layout_alignLeft="@id/PlayListImage"
+    	 android:layout_below="@id/PlayListImage"
+    	 android:maxHeight="35dp"
+    	 android:layout_marginTop="5dp"
+    />
+</RelativeLayout>

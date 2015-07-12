@@ -27,10 +27,10 @@ public abstract class VideoEntityItemAdapter<T extends YoutubeEntity> extends Ar
 	protected int _resourceId;
 	protected List<T> _playListCollection;
 	protected IContext<T> _Context;
-	public VideoEntityItemAdapter(IContext<T> context, int textViewResourceId, List<T> objects) {
-		super(context.GetContext(), textViewResourceId);
+	public VideoEntityItemAdapter(IContext<T> context, int layoutResourceId, List<T> objects) {
+		super(context.GetContext(), layoutResourceId);
 		// TODO Auto-generated constructor stub
-		_resourceId = textViewResourceId;
+		_resourceId = layoutResourceId;
 		_Context = context;
 		_playListCollection = objects;
 	}
@@ -86,6 +86,7 @@ public abstract class VideoEntityItemAdapter<T extends YoutubeEntity> extends Ar
 		imgView.setImageBitmap(image == null? GetDefaultBitmap(): image);
 		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        params.gravity = Gravity.TOP;
 		imgView.setLayoutParams(params);
 		return imgView;
 	}
@@ -96,7 +97,7 @@ public abstract class VideoEntityItemAdapter<T extends YoutubeEntity> extends Ar
 		textView.setText(text);
 		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-		params.gravity = Gravity.CENTER_VERTICAL;
+		params.gravity = Gravity.TOP;
 		textView.setLayoutParams(params);
 		textView.setTextSize(18);
 		return textView;

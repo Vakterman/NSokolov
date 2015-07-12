@@ -31,6 +31,7 @@ import android.view.View;
 import android.view.View.OnTouchListener;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
@@ -66,17 +67,17 @@ public class YoutubeTrackListActivity extends BaseNetworkActivity implements ICo
 		
 		VideoEntityItemAdapter<YoutubeEntityTrack> videoEntityItemAdapter = new YoutubeTrackListAdapter(this,R.layout.youtube_track_item,listVideoEntry);
 		
-		final ListView listView = (ListView)findViewById(R.id.track_list);
-		listView.setAdapter(videoEntityItemAdapter);
+		final GridView explorer = (GridView)findViewById(R.id.playlists_explorer);
+		explorer.setAdapter(videoEntityItemAdapter);
 		
-		listView.setOnItemClickListener(
+		explorer.setOnItemClickListener(
 				   new OnItemClickListener(){
 
 					@Override
 					public void onItemClick(AdapterView<?> parent, View view,
 							int position, long id) {
 						// TODO Auto-generated method stub
-						YoutubeEntityTrack videoEntry = (YoutubeEntityTrack)listView.getItemAtPosition(position);
+						YoutubeEntityTrack videoEntry = (YoutubeEntityTrack)explorer.getItemAtPosition(position);
 						StartSelectedLesson(videoEntry.GetVideoCode());
 					}
 					   

@@ -99,7 +99,7 @@ public class PlayListsExplorerActivity extends BaseNetworkActivity implements IC
 				if(result != null)
 				{
 					// TODO Auto-generated method stub
-					SetAdapter(new YoutubePlayListAdapter(getIContext(), R.layout.youtube_thumb_item,Lists.newArrayList(result)));
+					SetAdapter(new YoutubePlayListAdapter(getIContext(), R.layout.youtube_playlist_item,Lists.newArrayList(result)));
 					LoadLessonsPanel();
 				}
 			}

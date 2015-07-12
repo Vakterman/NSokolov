@@ -5,4 +5,18 @@
     android:layout_gravity="center_vertical"
     android:layout_marginStart="20dp">
     
+    <ImageView android:id="@+id/TrackImage"
+        android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+        android:contentDescription="Кадр из трека"
+        ></ImageView>
+    
+     <TextView android:id="@+id/TrackTitle"
+         android:layout_width="wrap_content"
+    	 android:layout_height="wrap_content"
+    	 android:layout_centerVertical="true"    	 
+    	 android:layout_toRightOf="@id/TrackImage"
+    	 android:maxHeight="80dp"
+    	 android:layout_marginTop="5dp"
+    />
 </RelativeLayout>

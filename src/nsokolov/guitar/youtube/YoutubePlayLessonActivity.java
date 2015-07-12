@@ -4,6 +4,7 @@ import nsokolov.guitar.entities.AndroidDeveloperKeys;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -76,6 +77,12 @@ public class YoutubePlayLessonActivity extends YouTubeBaseActivity implements
 	public void StartPlayer()
 	{
 		mPlayer.setFullscreen(true);
-		mPlayer.play();
+		
+		Handler handler = new Handler(); 
+	    handler.postDelayed(new Runnable() { 
+	         public void run() { 
+	        	 mPlayer.play();
+	         } 
+	    }, 1000); 
 	}
 }
